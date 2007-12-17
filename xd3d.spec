@@ -10,7 +10,6 @@ Source0: %{name}-%{version}.tar.bz2
 License: GPL
 Group: Sciences/Other
 Url: http://www.cmap.polytechnique.fr/~jouve/xd3d/
-BuildRoot: %{_tmppath}/%{name}-buildroot
 BuildRequires: g95
 BuildRequires: libxpm-devel
 Buildrequires: X11-devel
