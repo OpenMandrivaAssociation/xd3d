@@ -3,6 +3,7 @@
 %define release %mkrel 1
 # Don't support by g95
 %define _ssp_cflags %nil
+%define g95flags %( echo %optflags | sed 's/-mtune=[^ ]*//' )
 
 Summary: A simple scientific visualization tool
 Name: %{name}
@@ -30,8 +31,8 @@ includes the graph plotter xgraphic.
 
 perl -pi -e "s!^XD3D_DIR =.*!XD3D_DIR = `pwd`!" RULES
 perl -pi -e 's!^INSTALL_DIR =.*!INSTALL_DIR = %_bindir!' RULES
-perl -pi -e 's!^OPTC =.*!OPTC = %optflags!' RULES
-perl -pi -e 's!^OPTF =.*!OPTF = %optflags!' RULES
+perl -pi -e 's!^OPTC =.*!OPTC = %g95flags!' RULES
+perl -pi -e 's!^OPTF =.*!OPTF = %g95flags!' RULES
 perl -pi -e 's!^LIBX11 =.*!LIBX11 = %_prefix/X11R6/%_lib!' RULES
 perl -pi -e 's!^COMPILF =.*!COMPILF = g95!' RULES
 
