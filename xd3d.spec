@@ -1,12 +1,14 @@
 %define name xd3d
-%define version 8.2.3
+%define version 8.3.1
 %define release %mkrel 1
+# Don't support by g95
+%define _ssp_cflags %nil
 
 Summary: A simple scientific visualization tool
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: %{name}-%{version}.tar.bz2
+Source0: %{name}-%{version}.tar.gz
 License: GPL
 Group: Sciences/Other
 Url: http://www.cmap.polytechnique.fr/~jouve/xd3d/
