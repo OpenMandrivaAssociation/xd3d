@@ -1,6 +1,6 @@
 %define name xd3d
 %define version 8.3.1
-%define release %mkrel 5
+%define release %mkrel 6
 # Don't support by g95
 %define _ssp_cflags %nil
 %define g95flags %( echo %optflags | sed 's/-mtune=[^ ]*//' )
