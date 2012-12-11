@@ -4,6 +4,7 @@
 # Don't support by g95
 %define _ssp_cflags %nil
 %define Werror_cflags %nil
+# kept g95 option even if the compilation is made with gfortran
 %define g95flags %( echo %optflags | sed 's/-mtune=[^ ]*//' )
 
 Summary: A simple scientific visualization tool
@@ -14,11 +15,10 @@ Source0: %{name}-%{version}.tar.gz
 License: GPL
 Group: Sciences/Other
 Url: http://www.cmap.polytechnique.fr/~jouve/xd3d/
-BuildRoot: %{_tmppath}/%{name}-buildroot
-BuildRequires: g95
+BuildRequires: gcc-gfortran
 BuildRequires: libxpm-devel
-Buildrequires: libx11-devel
-BuildRequires: zlib-devel
+Buildrequires: pkgconfig(x11)
+BuildRequires: pkgconfig(zlib)
 
 %description
 Xd3d is a simple scientific visualization tool designed to be easy to learn.
@@ -36,25 +36,18 @@ perl -pi -e 's!^INSTALL_DIR =.*!INSTALL_DIR = %_bindir!' RULES
 perl -pi -e 's!^OPTC =.*!OPTC = %g95flags!' RULES
 perl -pi -e 's!^OPTF =.*!OPTF = %g95flags!' RULES
 perl -pi -e 's!^LIBX11 =.*!LIBX11 = %_libdir!' RULES
-perl -pi -e 's!^COMPILF =.*!COMPILF = g95!' RULES
+perl -pi -e 's!^COMPILF =.*!COMPILF = gfortran!' RULES
 perl -pi -e 's!\$\(COMPILF\) \$\(OPTF\) -o!\$(COMPILF) \$(OPTF) %ldflags -o!' RULES
 
 %build
 make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-
 mkdir -p %buildroot%_bindir
 
 make install INSTALL_DIR=%buildroot%_bindir
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
-%defattr(-,root,root)
 %doc CHANGELOG BUGS FORMATS README
 %doc Examples Manuals
 %_bindir/*
-
