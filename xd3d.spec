@@ -1,6 +1,6 @@
 %define name xd3d
 %define version 8.3.1
-%define release %mkrel 6
+%define release 7
 # Don't support by g95
 %define _ssp_cflags %nil
 %define Werror_cflags %nil
