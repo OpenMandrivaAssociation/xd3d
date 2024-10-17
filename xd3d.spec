@@ -14,7 +14,7 @@ Release: %{release}
 Source0: %{name}-%{version}.tar.gz
 License: GPL
 Group: Sciences/Other
-Url: http://www.cmap.polytechnique.fr/~jouve/xd3d/
+Url: https://www.cmap.polytechnique.fr/~jouve/xd3d/
 BuildRequires: gcc-gfortran
 BuildRequires: libxpm-devel
 Buildrequires: pkgconfig(x11)
